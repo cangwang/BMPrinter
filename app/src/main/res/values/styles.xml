@@ -1,0 +1,37 @@
+<resources>
+
+    <!-- Base application theme. -->
+    <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
+    </style>
+    <style name="CommonPrimaryBigTextStyle" parent="CommonPrimaryTextBgStyle">
+        <item name="android:textSize">16sp</item>
+        <item name="android:paddingTop">11dp</item>
+        <item name="android:paddingBottom">11dp</item>
+        <item name="android:paddingStart">6dp</item>
+        <item name="android:paddingEnd">6dp</item>
+    </style>
+
+    <style name="CommonPrimaryThinBigTextStyle" parent="CommonPrimaryThinTextBgStyle">
+        <item name="android:textSize">16sp</item>
+        <item name="android:paddingTop">11dp</item>
+        <item name="android:paddingBottom">11dp</item>
+        <item name="android:paddingStart">6dp</item>
+        <item name="android:paddingEnd">6dp</item>
+    </style>
+
+    <style name="CommonPrimaryTextBgStyle">
+        <item name="android:background">@drawable/common_primary_thick_round_selector</item>
+        <item name="android:textColor">@color/white</item>
+        <item name="android:gravity">center</item>
+    </style>
+    <style name="CommonPrimaryThinTextBgStyle">
+        <item name="android:background">@drawable/common_primary_thin_round_selector</item>
+        <item name="android:textColor">@color/common_color_379BFF</item>
+        <item name="android:gravity">center</item>
+    </style>
+
+</resources>
