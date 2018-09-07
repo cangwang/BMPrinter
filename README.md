@@ -10,9 +10,13 @@ Characteristic
 
 Add to Your project
 -------------------
+```
 Gradle:
 implementation project(':bmprinter')
 ```
+
+Ussage
+-------------------
 All code is write with kotlin,so it would be best you know kotlin and java.<br/>
 1.get BMPrinter
 var fingerprintUtil: IFingerprintUtil = createFingerprintUtil()
