@@ -22,11 +22,7 @@ All code is write with kotlin,so it would be best you know kotlin and java.<br/>
 var fingerprintUtil: IFingerprintUtil = createFingerprintUtil()
 
 2.authenticate<br/>
-fingerprintUtil?.authenticate { success, errCode, errMsg ->
-    if(success){
-
-    }
-}
+fingerprintUtil?.authenticate { success, errCode, errMsg -> if(success){}}
 
 3.FingerprintFactory
 you can see some status for fingerprint authentication in FingerprintFactory.<br/>
