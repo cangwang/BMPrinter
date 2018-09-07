@@ -9,7 +9,7 @@ import com.bcm.bmprinter.fingerprint.IFingerprintUtil
 /**
  * Vivo指纹识别模块，依赖于AOSP，支持返回屏下指纹位置，单位px
  * https://dev.vivo.com.cn/documentCenter/doc/104 sdk文档地址
- * Created by Kin on 2018/8/31
+ * Created cangwang & by Kin on 2018/8/31
  */
 class VivoFingerprintUtil private constructor(context: Context) : IFingerprintUtil {
     companion object {

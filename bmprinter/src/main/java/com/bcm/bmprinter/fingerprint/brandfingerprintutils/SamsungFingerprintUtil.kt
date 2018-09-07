@@ -10,7 +10,7 @@ import com.samsung.android.sdk.pass.SpassFingerprint
 /**
  * Samsung指纹识别模块，Android M+依赖于AOSP，Android 4.2-5.1通过三星SDK进行支持
  * https://developer.samsung.com/galaxy/pass sdk文档下载
- * Created by Kin on 2018/9/3
+ * Created cangwang & by Kin on 2018/9/3
  */
 class SamsungFingerprintUtil private constructor(context: Context) : IFingerprintUtil {
     companion object {

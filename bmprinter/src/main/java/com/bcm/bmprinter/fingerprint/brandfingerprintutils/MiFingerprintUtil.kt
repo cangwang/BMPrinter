@@ -8,7 +8,7 @@ import com.bcm.bmprinter.fingerprint.IFingerprintUtil
 /**
  * Xiaomi指纹识别模块，依赖于AOSP，支持返回屏下指纹位置，单位px
  *
- * Created by Kin on 2018/8/31
+ * Created by cangwang & Kin on 2018/8/31
  */
 class MiFingerprintUtil private constructor(context: Context) : IFingerprintUtil {
     companion object {

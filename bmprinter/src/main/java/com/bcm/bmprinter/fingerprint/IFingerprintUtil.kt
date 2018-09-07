@@ -1,7 +1,7 @@
 package com.bcm.bmprinter.fingerprint
 
 /**
- * Created by Kin on 2018/8/31
+ * Created cangwang &  Kin on 2018/8/31
  */
 interface IFingerprintUtil {
     /**

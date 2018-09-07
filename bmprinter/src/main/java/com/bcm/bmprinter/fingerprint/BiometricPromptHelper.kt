@@ -15,7 +15,7 @@ import javax.crypto.KeyGenerator
 /**
  * sdk>28 后使用BiometricPrompt识别(等Android P 发出再适配)
  * https://developer.android.google.cn/reference/android/hardware/biometrics/BiometricPrompt#public-methods
- * Created by zjl on 2018/9/6.
+ * Created by cangwang & kin on 2018/9/6.
  */
 @SuppressLint("NewApi")
 class BiometricPromptHelper(context: Context){

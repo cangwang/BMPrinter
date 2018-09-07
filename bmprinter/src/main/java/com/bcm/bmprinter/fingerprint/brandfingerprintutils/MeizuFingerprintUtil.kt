@@ -13,7 +13,7 @@ import com.fingerprints.service.FingerprintManager
 /**
  * Meizu指纹识别模块，Android M+依赖于AOSP，Android L通过魅族SDK进行支持
  * http://open-wiki.flyme.cn/index.php?title=指纹识别API sdk文档地址
- * Created by Kin on 2018/8/31
+ * Created by cangwang & Kin on 2018/8/31
  */
 class MeizuFingerprintUtil private constructor(context: Context) : IFingerprintUtil {
     companion object {

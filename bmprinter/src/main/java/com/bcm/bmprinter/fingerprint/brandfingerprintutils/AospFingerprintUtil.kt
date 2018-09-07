@@ -9,7 +9,7 @@ import com.bcm.bmprinter.fingerprint.IFingerprintUtil
 /**
  * AOSP指纹识别模块，Android Marshmallow+
  *
- * Created by Kin on 2018/9/3
+ * Created by cangwang & Kin on 2018/9/3
  */
 class AospFingerprintUtil private constructor(context: Context) : IFingerprintUtil {
     companion object {

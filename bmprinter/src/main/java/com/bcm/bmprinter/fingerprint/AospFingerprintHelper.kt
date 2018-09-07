@@ -18,7 +18,7 @@ import javax.crypto.KeyGenerator
  * https://www.cnblogs.com/popfisher/p/6063835.html 接口详细分析和说明
  * @param context Application的引用
  *
- * Created by Kin in 2018/8/31
+ * Created by cangwang & Kin in 2018/8/31
  **/
 @SuppressLint("NewApi")
 class AospFingerprintHelper(context: Context) {

@@ -11,7 +11,7 @@ import com.bcm.bmprinter.fingerprint.brandfingerprintutils.*
  * Kotlin调用函数的方法：直接访问函数名
  * Kotlin调用厂常量的方法：直接访问常量名
  *
- * Created by Kin on 2018/8/31
+ * Created by cangwang & Kin on 2018/8/31
  */
 const val AUTHENTICATE_SUCCESS = 0                  // 成功
 const val AUTHENTICATE_FAILED_NOT_MATCH = 1         // 不匹配
