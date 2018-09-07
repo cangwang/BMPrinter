@@ -18,13 +18,13 @@ implementation project(':bmprinter')
 Ussage
 -------------------
 All code is write with kotlin,so it would be best you know kotlin and java.<br/>
-1.get BMPrinter
+1.get BMPrinter<br/>
 var fingerprintUtil: IFingerprintUtil = createFingerprintUtil()
 
 2.authenticate<br/>
 fingerprintUtil?.authenticate { success, errCode, errMsg -> if(success){}}
 
-3.FingerprintFactory
+3.FingerprintFactory<br/>
 you can see some status for fingerprint authentication in FingerprintFactory.<br/>
 
 
