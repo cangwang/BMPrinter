@@ -2,15 +2,15 @@
     <string name="app_name">BMPrinter</string>
 
     <!--fingerprint-->
-    <string name="me_fingerprint_verify_title">Verify Fingerprint to show Account Key</string>
-    <string name="me_fingerprint_change_to_password">Use Password</string>
-    <string name="me_fingerprint_password_title">Enter Account Key Password</string>
-    <string name="me_fingerprint_password_hint">Password</string>
-    <string name="me_fingerprint_password_try_again">Try again</string>
-    <string name="me_fingerprint_not_match">Fingerprint Not Recognised</string>
-    <string name="me_fingerprint_lockout">Fingerprint temporarily disabled due to too many fails attempts</string>
-    <string name="me_fingerprint_scan_timeout">Scan fingerprint timeout</string>
-    <string name="me_fingerprint_unknown_error">Unknown error</string>
-    <string name="me_fingerprint_fail_cancel">Canceled by user</string>
-    <string name="me_cancel">Cancel</string>
+    <string name="fingerprint_verify_title">Verify Fingerprint to show Account Key</string>
+    <string name="fingerprint_change_to_password">Use Password</string>
+    <string name="fingerprint_password_title">Enter Account Key Password</string>
+    <string name="fingerprint_password_hint">Password</string>
+    <string name="fingerprint_password_try_again">Try again</string>
+    <string name="fingerprint_not_match">Fingerprint Not Recognised</string>
+    <string name="fingerprint_lockout">Fingerprint temporarily disabled due to too many fails attempts</string>
+    <string name="fingerprint_scan_timeout">Scan fingerprint timeout</string>
+    <string name="fingerprint_unknown_error">Unknown error</string>
+    <string name="fingerprint_fail_cancel">Canceled by user</string>
+    <string name="cancel">Cancel</string>
 </resources>

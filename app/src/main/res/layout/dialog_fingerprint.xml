@@ -13,7 +13,7 @@
         android:layout_height="64dp"
         android:layout_gravity="center_horizontal"
         android:layout_marginTop="25dp"
-        app:srcCompat="@drawable/me_fingerprint_not_match_icon" />
+        app:srcCompat="@drawable/fingerprint_not_match_icon" />
 
     <TextView
         android:id="@+id/dialog_fingerprint_text"
@@ -26,7 +26,7 @@
         android:layout_marginEnd="15dp"
         android:textColor="@color/black"
         android:textSize="15sp"
-        tools:text="@string/me_fingerprint_not_match"/>
+        tools:text="@string/fingerprint_not_match"/>
 
     <Button
         android:id="@+id/dialog_fingerprint_positive"
@@ -37,7 +37,7 @@
         android:layout_marginEnd="15dp"
         android:layout_marginStart="15dp"
         android:layout_marginTop="20dp"
-        android:text="@string/me_fingerprint_password_try_again"
+        android:text="@string/fingerprint_password_try_again"
          />
 
     <Button
@@ -50,6 +50,6 @@
         android:layout_marginEnd="15dp"
         android:layout_marginStart="15dp"
         android:layout_marginTop="15dp"
-        android:text="@string/me_cancel"
+        android:text="@string/cancel"
         />
 </LinearLayout>

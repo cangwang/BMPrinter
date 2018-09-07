@@ -4,7 +4,7 @@
     <color name="colorPrimaryDark">#303F9F</color>
     <color name="colorAccent">#FF4081</color>
     <color name="transparent">#00000000</color>
-    <color name="me_verify_fingerprint_background">#E6182331</color>
+    <color name="verify_fingerprint_background">#E6182331</color>
     <color name="white">#ffffff</color>
     <color name="black">#ff000000</color>
     <color name="common_color_379BFF">#379BFF</color>

@@ -36,11 +36,6 @@ class VerifyFingerprintFragment : Fragment() {
         }
     }
 
-    override fun onDestroy() {
-        super.onDestroy()
-        verify_fingerprint_icon.removeCallbacks(resetImage)
-    }
-
     /**
      * 开启指纹识别
      */
@@ -49,9 +44,10 @@ class VerifyFingerprintFragment : Fragment() {
         fingerprintUtil?.authenticate { success, errCode, errMsg ->
             Log.d(TAG, "Get authenticate result, success: $success, error code: $errCode, error msg: $errMsg")
             if (success) { //返回成功
-                verify_fingerprint_icon.setImageDrawable(context?.getDrawable(R.drawable.me_fingerprint_match_icon))
+                verify_fingerprint_icon.setImageDrawable(context?.getDrawable(R.drawable.fingerprint_match_icon))
                 Handler(Looper.getMainLooper()).postDelayed({
                     verifyCallback?.invoke(true)
+                    verify_fingerprint_icon.postDelayed(resetImage,2000)
                 }, 1000)
             } else {
                 if (errCode == AUTHENTICATE_FAILED_LOCKOUT) {  //如果返回验证超过次数被锁
@@ -64,7 +60,7 @@ class VerifyFingerprintFragment : Fragment() {
                     return@authenticate
                 }
                 if (fragmentOnTop) { //页面不在顶层
-                    showFailDialog(getString(R.string.me_fingerprint_not_match), errCode == AUTHENTICATE_FAILED_LOCKOUT)
+                    showFailDialog(getString(R.string.fingerprint_not_match), errCode == AUTHENTICATE_FAILED_LOCKOUT)
                 }
             }
             fingerprintUtil?.cancelAuthenticate()
@@ -81,13 +77,12 @@ class VerifyFingerprintFragment : Fragment() {
      */
     fun setCallback(callback: (success: Boolean) -> Unit): VerifyFingerprintFragment {
         verifyCallback = callback
-        verify_fingerprint_icon.postDelayed(resetImage,2000)
-        startAuthenticate()
         return this
     }
 
     val resetImage = Runnable {
-        verify_fingerprint_icon.setImageDrawable(context?.getDrawable(R.drawable.me_fingerprint_icon))
+        verify_fingerprint_icon.setImageDrawable(context?.getDrawable(R.drawable.fingerprint_icon))
+        startAuthenticate()
     }
 
     private fun showFailDialog(errMsg: String, lockout: Boolean) {
@@ -117,6 +112,7 @@ class VerifyFingerprintFragment : Fragment() {
         super.onStop()
         fragmentOnTop = false
         fingerprintUtil?.cancelAuthenticate()
+        verify_fingerprint_icon.removeCallbacks(resetImage)
     }
 
     override fun onDetach() {

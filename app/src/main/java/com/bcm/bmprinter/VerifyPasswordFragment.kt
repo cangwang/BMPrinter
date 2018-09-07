@@ -56,9 +56,9 @@ class VerifyPasswordFragment : Fragment() {
         if (lockout) {
             // 失败过多被锁，不允许跳转到指纹识别
             verify_password_fingerprint.setOnClickListener {
-                Toast.makeText(activity,getString(R.string.me_fingerprint_lockout),Toast.LENGTH_SHORT).show()
+                Toast.makeText(activity,getString(R.string.fingerprint_lockout),Toast.LENGTH_SHORT).show()
             }
-            Toast.makeText(activity,getString(R.string.me_fingerprint_lockout),Toast.LENGTH_SHORT).show()
+            Toast.makeText(activity,getString(R.string.fingerprint_lockout),Toast.LENGTH_SHORT).show()
         }
     }
 
