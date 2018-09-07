@@ -3,9 +3,9 @@ BMPrinter is the first open source project from SKYSTAR and BCM
 
 Characteristic
 -------------------
-1.Has Adapted most of phone with fingerprint above Android N,included XIAOMI，MEIZU，VIVO，OPPO,Samsung and google
-2.Has Adapted underscreen fingerprint,include XIAOMI,VIVO,OPPO
-3.Has Adapted some phone above Android L
+1.Has Adapted most of phone with fingerprint above Android N,included XIAOMI，MEIZU，VIVO，OPPO,Samsung and google.<br/>
+2.Has Adapted underscreen fingerprint,include XIAOMI,VIVO,OPPO.<br/>
+3.Has Adapted some phone above Android L.<br/>
 
 
 Add to Your project
