@@ -3,6 +3,7 @@ package com.bcm.bmprinter.fingerprint
 import android.annotation.SuppressLint
 import android.app.KeyguardManager
 import android.content.Context
+import android.hardware.biometrics.BiometricPrompt
 import android.hardware.fingerprint.FingerprintManager
 import android.os.Build
 import android.os.CancellationSignal
@@ -25,7 +26,7 @@ class AospFingerprintHelper(context: Context) {
     private val TAG = this::class.java.simpleName
     private val KEY_STORE_PROVIDER = "AndroidKeyStore"
     private val KEY_STORE_ALIAS = "com.bcm.messenger.fingerprint"
-
+    private val biometricPrompt = BiometricPrompt.Builder(context).setTitle("BiometricPrompt").build()
     private val fingerprintManager = context.getSystemService(Context.FINGERPRINT_SERVICE) as FingerprintManager
     private val keyguardManager = context.getSystemService(Context.KEYGUARD_SERVICE) as KeyguardManager
     private lateinit var cipher: Cipher
@@ -59,16 +60,25 @@ class AospFingerprintHelper(context: Context) {
         cancelSignal = CancellationSignal()
         // flags为1是因为设置小米屏下指纹的图标颜色，原生API属于保留字段，未被使用
         try {
-            fingerprintManager.authenticate(FingerprintManager.CryptoObject(cipher), cancelSignal, 1, callback(authenticateResult), null)
+            if (Build.VERSION.SDK_INT>=Build.VERSION_CODES.P){
+                biometricPrompt.authenticate(BiometricPrompt.CryptoObject(cipher), cancelSignal, null,callbackV28(authenticateResult))
+            }else {
+                fingerprintManager.authenticate(FingerprintManager.CryptoObject(cipher), cancelSignal, 1, callback(authenticateResult), null)
+            }
         }catch (e:SecurityException){ //失败重试机制
             try {
-                fingerprintManager.authenticate(null, cancelSignal, 1, callback(authenticateResult), null)
+                if (Build.VERSION.SDK_INT>=Build.VERSION_CODES.P){
+                    biometricPrompt.authenticate(null, cancelSignal, null, callbackV28(authenticateResult))
+                }else {
+                    fingerprintManager.authenticate(null, cancelSignal, 1, callback(authenticateResult), null)
+                }
             }catch (e2:SecurityException){
                 authenticateResult(false, AUTHENTICATE_FAILED_NOT_MATCH, null)
             }
         }
     }
 
+    @Suppress("DEPRECATION")
     fun callback(authenticateResult: (success: Boolean, errCode: Int, errMsg: String?) -> Unit):FingerprintManager.AuthenticationCallback{
         return object : FingerprintManager.AuthenticationCallback() {
             override fun onAuthenticationError(errorCode: Int, errString: CharSequence?) {
@@ -85,6 +95,33 @@ class AospFingerprintHelper(context: Context) {
             }
 
             override fun onAuthenticationSucceeded(result: FingerprintManager.AuthenticationResult?) {
+                Log.d(TAG, "AOSP authentication success")
+                authenticateResult(true, AUTHENTICATE_SUCCESS, null)
+            }
+
+            override fun onAuthenticationFailed() {
+                Log.d(TAG, "AOSP authentication failed, not match")
+                authenticateResult(false, AUTHENTICATE_FAILED_NOT_MATCH, null)
+            }
+        }
+    }
+
+    private fun callbackV28(authenticateResult: (success: Boolean, errCode: Int, errMsg: String?) -> Unit):BiometricPrompt.AuthenticationCallback{
+        return object : BiometricPrompt.AuthenticationCallback() {
+            override fun onAuthenticationError(errorCode: Int, errString: CharSequence?) {
+                Log.d(TAG, "AOSP authentication error, error code: $errorCode, error msg: $errString")
+                val resultCode = when (errorCode) {
+                    BiometricPrompt.BIOMETRIC_ERROR_LOCKOUT -> AUTHENTICATE_FAILED_LOCKOUT
+                    BiometricPrompt.BIOMETRIC_ERROR_CANCELED -> AUTHENTICATE_FAILED_CANCELED
+                    BiometricPrompt.BIOMETRIC_ERROR_TIMEOUT -> AUTHENTICATE_FAILED_TIMEOUT
+                    BiometricPrompt.BIOMETRIC_ACQUIRED_INSUFFICIENT -> AUTHENTICATE_FAILED_DIRTY
+                    BiometricPrompt.BIOMETRIC_ACQUIRED_PARTIAL -> AUTHENTICATE_FAILED_ACQUIRED_PARTIAL
+                    else -> AUTHENTICATE_FAILED_UNKNOWN
+                }
+                authenticateResult(false, resultCode, errString?.toString())
+            }
+
+            override fun onAuthenticationSucceeded(result: BiometricPrompt.AuthenticationResult?) {
                 Log.d(TAG, "AOSP authentication success")
                 authenticateResult(true, AUTHENTICATE_SUCCESS, null)
             }

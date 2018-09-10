@@ -1,8 +1,10 @@
 package com.bcm.bmprinter.fingerprint
 
 import android.annotation.SuppressLint
+import android.app.KeyguardManager
 import android.content.Context
 import android.hardware.biometrics.BiometricPrompt
+import android.hardware.fingerprint.FingerprintManager
 import android.os.Build
 import android.os.CancellationSignal
 import android.security.keystore.KeyGenParameterSpec
@@ -21,7 +23,8 @@ import javax.crypto.KeyGenerator
 class BiometricPromptHelper(context: Context){
     private val TAG = this::class.java.simpleName
     val biometricPrompt = BiometricPrompt.Builder(context).setTitle("BiometricPrompt").build()
-
+    private val fingerprintManager = context.getSystemService(Context.FINGERPRINT_SERVICE) as FingerprintManager
+    private val keyguardManager = context.getSystemService(Context.KEYGUARD_SERVICE) as KeyguardManager
     private val KEY_STORE_PROVIDER = "AndroidKeyStore"
     private val KEY_STORE_ALIAS = "com.bcm.messenger.fingerprint"
     private lateinit var cipher: Cipher
@@ -31,24 +34,24 @@ class BiometricPromptHelper(context: Context){
         initKeyAndCipher()
     }
 
-//    fun isHardwareDetected() = biometricPrompt.isHardwareDetected
-//
-//    /**
-//     * 是否录入指纹，有些设备上即使录入了指纹，但是没有开启锁屏密码的话此方法还是返回false
-//     */
-//    fun hasEnrolledFingerprints():Boolean {
-//        try {
-//            // 有些厂商api23之前的版本可能没有做好兼容，这个方法内部会崩溃（redmi note2, redmi note3等）
-//            return biometricPrompt.hasEnrolledFingerprints()
-//        }catch (e:SecurityException){
-//
-//        }catch (e:Throwable){
-//
-//        }
-//        return false
-//    }
-//
-//    fun isKeyguardSecure() = biometricPrompt.isKeyguardSecure
+    fun isHardwareDetected() = fingerprintManager.isHardwareDetected
+
+    /**
+     * 是否录入指纹，有些设备上即使录入了指纹，但是没有开启锁屏密码的话此方法还是返回false
+     */
+    fun hasEnrolledFingerprints():Boolean {
+        try {
+            // 有些厂商api23之前的版本可能没有做好兼容，这个方法内部会崩溃（redmi note2, redmi note3等）
+            return fingerprintManager.hasEnrolledFingerprints()
+        }catch (e:SecurityException){
+
+        }catch (e:Throwable){
+
+        }
+        return false
+    }
+
+    fun isKeyguardSecure() = keyguardManager.isKeyguardSecure
 
     fun startAuthenticate(authenticateResult: (success: Boolean, errCode: Int, errMsg: String?) -> Unit) {
         cancelSignal = CancellationSignal()
