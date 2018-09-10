@@ -31,5 +31,4 @@ you can see some status for fingerprint authentication in FingerprintFactory.<br
 About Android P
 -------------------
 It has change FingerPrint api to BiometricPrompt and BiometricPrompt only can be built as a dialog.<br/>
-BiometricPrompt api is a few, can not judge fingerprint.
-You can still use fingerprintManager but it has been deprecated.<br/>
+New version has support android P.<br/>
