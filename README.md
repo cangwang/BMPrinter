@@ -15,7 +15,7 @@ Gradle:
 implementation project(':bmprinter')
 ```
 
-Ussage
+Usage
 -------------------
 All code is write with kotlin,so it would be best you know kotlin and java.<br/>
 1.get BMPrinter<br/>
